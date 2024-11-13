@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Centro Óptico - Avaliação Visual</title>
+</head>
+
+<body class="bg-gray-50 p-6">
+  <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+    <!-- Header -->
+    <header class="border-b-2 pb-4 mb-6">
+      <div class="flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-gray-800">Centro Óptico</h1>
+      </div>
+      <p class="text-gray-600 italic">Você nunca viu nada assim</p>
+      <h2 class="text-xl font-semibold mt-4">FICHA DE RASTREIO / AVALIAÇÃO VISUAL</h2>
+    </header>
+
+    <form>
+      <!-- Personal Data Section -->
+      <section class="mb-8">
+        <h3 class="text-lg font-semibold mb-4 bg-gray-100 p-2">DADOS PESSOAIS (obrigatório)</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label for="nome" class="block text-sm font-medium mb-1">Nome:</label>
+            <input id="nome" type="text" class="w-full border rounded p-2" required>
+          </div>
+          <div>
+            <label for="idade" class="block text-sm font-medium mb-1">Idade:</label>
+            <input id="idade" type="number" class="w-full border rounded p-2" required>
+          </div>
+          <div class="md:col-span-2">
+            <label for="morada" class="block text-sm font-medium mb-1">Morada:</label>
+            <input id="morada" type="text" class="w-full border rounded p-2" required>
+          </div>
+          <div>
+            <label for="telefone" class="block text-sm font-medium mb-1">Telefone:</label>
+            <input id="telefone" type="tel" class="w-full border rounded p-2">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Gênero:</label>
+            <div class="flex gap-4 mt-2">
+              <label class="flex items-center">
+                <input type="radio" name="gender" value="M" class="mr-2">
+                M
+              </label>
+              <label class="flex items-center">
+                <input type="radio" name="gender" value="F" class="mr-2">
+                F
+              </label>
+            </div>
+          </div>
+          <div>
+            <label for="data_consulta" class="block text-sm font-medium mb-1">Data da última consulta:</label>
+            <input id="data_consulta" type="date" class="w-full border rounded p-2">
+          </div>
+        </div>
+      </section>
+
+      <!-- Marketing Consent -->
+      <section class="mb-8">
+        <h3 class="text-lg font-semibold mb-4">Autorizo o envio de notícias e ofertas de marketing:</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label for="sms" class="block text-sm font-medium mb-1">Via SMS:</label>
+            <input id="marketing_sms" type="tel" class="w-full border rounded p-2">
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium mb-1">Via Email:</label>
+            <input id="marketing_email" type="email" class="w-full border rounded p-2">
+          </div>
+        </div>
+      </section>
+
+      <!-- ANAMNESE Section -->
+      <section class="mb-8">
+        <h3 class="text-lg font-semibold mb-4 bg-gray-100 p-2">ANAMNESE</h3>
+
+        <!-- Symptoms Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 mb-6">
+          <!-- Left Column -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <label class="flex items-center">
+                <input id="check_dor_cabeca" type="checkbox" class="mr-2">
+                Dores de cabeça
+              </label>
+              <input id="obs_check_dor_cabeca" type="text" class="border rounded p-2" placeholder="Observações">
+            </div>
+            <div class="flex justify-between items-center">
+              <label class="flex items-center">
+                <input id="check_ardor" type="checkbox" class="mr-2">
+                Ardor/Dor ocular
+              </label>
+              <input id="obs_check_ardor" type="text" class="border rounded p-2" placeholder="Observações">
+            </div>
+            <div class="flex justify-between items-center">
+              <label class="flex items-center">
+                <input id="check_lacrimejo" type="checkbox" class="mr-2">
+                Lacrimejo excessivo
+              </label>
+              <input id="obs_check_lacrimejo" type="text" class="border rounded p-2" placeholder="Observações">
+            </div>
+            <div class="flex justify-between items-center">
+              <label class="flex items-center">
+                <input id="check_sensibilidade" type="checkbox" class="mr-2">
+                Sensibilidade à luz
+              </label>
+              <input id="obs_check_sensibilidade" type="text" class="border rounded p-2" placeholder="Observações">
+            </div>
+            <div class="flex justify-between items-center">
+              <label class="flex items-center">
+                <input id="check_comichao" type="checkbox" class="mr-2">
+                Comichão
+              </label>
+              <input id="obs_check_comichao" type="text" class="border rounded p-2" placeholder="Observações">
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <label class="flex items-center">
+                <input id="check_olho_vermelho" type="checkbox" class="mr-2">
+                Olho vermelho
+              </label>
+              <input id="obs_check_olho_vermelho" type="text" class="border rounded p-2" placeholder="Observações">
+            </div>
+            <div class="flex justify-between items-center">
+              <label class="flex items-center">
+                <input id="check_pupila_branca" type="checkbox" class="mr-2">
+                Pupila branca
+              </label>
+              <input id="obs_check_pupila_branca" type="text" class="border rounded p-2" placeholder="Observações">
+            </div>
+            <div class="flex justify-between items-center">
+              <label class="flex items-center">
+                <input id="check_pestanas" type="checkbox" class="mr-2">
+                Alterações pestanas
+              </label>
+              <input id="obs_check_pestanas" type="text" class="border rounded p-2" placeholder="Observações">
+            </div>
+            <div class="flex justify-between items-center">
+              <label class="flex items-center">
+                <input id="check_palpebras" type="checkbox" class="mr-2">
+                Alterações palpebras
+              </label>
+              <input id="obs_check_palpebras" type="text" class="border rounded p-2" placeholder="Observações">
+            </div>
+            <div class="flex justify-between items-center">
+              <label class="flex items-center">
+                <input id="check_conjuntiva" type="checkbox" class="mr-2">
+                Alterações conjuntiva
+              </label>
+              <input id="obs_check_conjuntiva" type="text" class="border rounded p-2" placeholder="Observações">
+            </div>
+          </div>
+        </div>
+
+        <!-- Dificuldade em ver Section -->
+        <div class="mb-6 p-4 border rounded">
+          <h4 class="font-medium mb-4">Dificuldade em ver:</h4>
+          <div class="grid grid-cols-3 gap-4">
+            <label class="flex items-center gap-3">
+              <span class="block">Longe</span>
+              <input type="radio" name="dif_ver" value="longe" class="mr-1">
+            </label>
+            <label class="flex items-center gap-3">
+              <span class="block ">Perto</span>
+              <input type="radio" name="dif_ver" value="perto" class="mr-1">
+            </label>
+            <label class="flex items-center gap-3">
+              <span class="block">Longe e perto</span>
+              <input type="radio" name="dif_ver" value="ambos" class="mr-1">
+            </label>
+          </div>
+          <div class="mt-4">
+            <label for="observacoes_dificuldade" class="block text-sm font-medium mb-1">Observações</label>
+            <input id="observacoes_dificuldade" type="text" class="w-full border rounded p-2">
+          </div>
+        </div>
+
+        <!-- Yes/No Questions Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Medical History -->
+          <div class="border rounded-lg p-4">
+            <h4 class="font-medium mb-4">Histórico</h4>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span>Usa óculos</span>
+                <div class="space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" name="usa_oculo" value="sim" class="mr-1">
+                    <span class="text-sm">SIM</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" name="usa_oculo" value="nao" class="mr-1">
+                    <span class="text-sm">NÃO</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <span>Cirurgia ocular</span>
+                <div class="space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" name="cirurgia_ocular" value="sim" class="mr-1">
+                    <span class="text-sm">SIM</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" name="cirurgia_ocular" value="nao" class="mr-1">
+                    <span class="text-sm">NÃO</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <span>Doenças oculares</span>
+                <div class="space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" name="doencas_oculares" value="sim" class="mr-1">
+                    <span class="text-sm">SIM</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" name="doencas_oculares" value="nao" class="mr-1">
+                    <span class="text-sm">NÃO</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <span>Medicação ocular</span>
+                <div class="space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" name="medicacao_ocular" value="sim" class="mr-1">
+                    <span class="text-sm">SIM</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" name="medicacao_ocular" value="nao" class="mr-1">
+                    <span class="text-sm">NÃO</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Information -->
+          <div class="border rounded-lg p-4">
+            <h4 class="font-medium mb-4">Informações Adicionais</h4>
+            <div class="space-y-4">
+              <div>
+                <label for="doencas_diagnosticadas" class="block text-sm mb-1">Doenças diagnosticadas:</label>
+                <input id="doencas_diagnosticadas" type="text" class="w-full border rounded p-2">
+              </div>
+              <div>
+                <label for="medicacao_regular" class="block text-sm mb-1">Medicação regular:</label>
+                <input id="medicacao_regular" type="text" class="w-full border rounded p-2">
+              </div>
+              <div>
+                <label for="qual_medicacao" class="block text-sm mb-1">Qual:</label>
+                <input id="qual_medicacao" type="text" class="w-full border rounded p-2">
+              </div>
+              <div>
+                <label for="antecedentes_familiares" class="block text-sm mb-1">Antecedentes familiares:</label>
+                <input id="antecedentes_familiares" type="text" class="w-full border rounded p-2">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Updated EXAMES section -->
+      <section class="mb-8">
+        <h3 class="text-lg font-semibold mb-4 bg-gray-100 p-2">EXAMES</h3>
+        <div class="grid grid-rows-5 grid-cols-4 gap-2">
+          <!-- Labels column -->
+          <div class="row-start-2">AR</div>
+          <div class="row-start-3">TONOMETRIA</div>
+          <div class="row-start-4">AV LONGE</div>
+          <div class="row-start-5">AV PERTO</div>
+
+          <!-- OD column -->
+          <div class="font-medium text-center col-start-2">OD</div>
+          <input type="text" class="row-start-2 w-full border rounded p-1">
+          <input type="text" class="row-start-3 w-full border rounded p-1">
+          <input type="text" class="row-start-4 w-full border rounded p-1">
+          <input type="text" class="row-start-5 w-full border rounded p-1">
+
+          <!-- OE column -->
+          <div class="font-medium text-center">OE</div>
+          <input type="text" class="row-start-2 w-full border rounded p-1">
+          <input type="text" class="row-start-3 w-full border rounded p-1">
+          <input type="text" class="row-start-4 w-full border rounded p-1">
+          <input type="text" class="row-start-5 w-full border rounded p-1">
+
+          <!-- BINOCULAR column -->
+          <div class="font-medium text-center">BINOCULAR</div>
+          <input type="text" class="row-start-2 w-full border rounded p-1">
+          <input type="text" class="row-start-3 w-full border rounded p-1">
+          <input type="text" class="row-start-4 w-full border rounded p-1">
+          <input type="text" class="row-start-5 w-full border rounded p-1">
+        </div>
+
+        <!-- Status Section -->
+        <div class="mt-10">
+          <div>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span>TESTE DE ISHIHARA</span>
+                <div class="space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" name="teste_ishihara" value="alterado" class="mr-1">
+                    <span class="text-sm">ALTERADO</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" name="teste_ishihara" value="nao_alterado" class="mr-1">
+                    <span class="text-sm">NÃO ALTERADO</span>
+                  </label>
+                  <input type="text" class="border rounded p-2" placeholder="Observações">
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <span>MOTILIDADE OCULAR</span>
+                <div class="space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" name="motilidade_ocular" value="alterado" class="mr-1">
+                    <span class="text-sm">ALTERADO</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" name="motilidade_ocular" value="nao_alterado" class="mr-1">
+                    <span class="text-sm">NÃO ALTERADO</span>
+                  </label>
+                  <input type="text" class="border rounded p-2" placeholder="Observações">
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <span>TESTE ESTEREOPSIA (MOSCA)</span>
+                <div class="space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" name="teste_estereopsia" value="alterado" class="mr -1">
+                    <span class="text-sm">ALTERADO</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" name="teste_estereopsia" value="nao_alterado" class="mr-1">
+                    <span class="text-sm">NÃO ALTERADO</span>
+                  </label>
+                  <input type="text" class="border rounded p-2" placeholder="Observações">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 mb-6 p-4 border rounded">
+          <h4 class="font-medium mb-4">PRISMA 6Δ BASE SUP.</h4>
+          <div class="grid grid-cols-4 gap-4">
+            <label class="flex items-center gap-3">
+              <span class="block">Exoforia</span>
+              <input type="radio" name="prisma" value="exoforia" class="mr-1">
+            </label>
+            <label class="flex items-center gap-3">
+              <span class="block">Endoforia</span>
+              <input type="radio" name="prisma" value="endoforia" class="mr-1">
+            </label>
+            <label class="flex items-center gap-3">
+              <span class="block">ORTO</span>
+              <input type="radio" name="prisma" value="orto" class="mr-1">
+            </label>
+            <label class="flex items-center gap-3">
+              <span class="block">Supressão</span>
+              <input type="radio" name="prisma" value="supressao" class="mr-1">
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Examiner Section -->
+      <section class="mt-8 border-t pt-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label for="examinador" class="block text-sm font-medium mb-1">Examinador:</label>
+            <input id="examinador" type="text" class="w-full border rounded p-2">
+          </div>
+          <div>
+            <label for="data_exame" class="block text-sm font-medium mb-1">Data:</label>
+            <input id="data_exame" type="date" class="w-full border rounded p-2">
+          </div>
+        </div>
+      </section>
+
+      <!-- Submit Button -->
+      <div class="mt-8">
+        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
+          Salvar Avaliação
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script src="./main.js"></script>
+</body>
+
+</html>
