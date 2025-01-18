@@ -13,6 +13,7 @@ class FormDataCollector {
       sms: document.getElementById('marketing_sms'),
       email: document.getElementById('marketing_email')
     };
+
     this.anamneseForm = {
       sintomas: {
         dor_cabeca: {
@@ -72,7 +73,48 @@ class FormDataCollector {
         qual_medicacao: document.getElementById('qual_medicacao'),
         antecedentes_familiares: document.getElementById('antecedentes_familiares')
       }
-    }
+    };
+
+    this.examesForm = {
+      ar: {
+        od: document.getElementById('ar_od'),
+        oe: document.getElementById('ar_oe'),
+        binocular: document.getElementById('ar_binocular')
+      },
+      tonometria: {
+        od: document.getElementById('tonometria_od'),
+        oe: document.getElementById('tonometria_oe'),
+        binocular: document.getElementById('tonometria_binocular')
+      },
+      avLonge: {
+        od: document.getElementById('av_longe_od'),
+        oe: document.getElementById('av_longe_oe'),
+        binocular: document.getElementById('av_longe_binocular')
+      },
+      avPerto: {
+        od: document.getElementById('av_perto_od'),
+        oe: document.getElementById('av_perto_oe'),
+        binocular: document.getElementById('av_perto_binocular')
+      },
+      testeIshihara: {
+        radios: document.getElementsByName('teste_ishihara'),
+        obs: document.getElementById('teste_ishihara_obs')
+      },
+      motilidadeOcular: {
+        radios: document.getElementsByName('motilidade_ocular'),
+        obs: document.getElementById('motilidade_ocular_obs')
+      },
+      testeEstereopsia: {
+        radios: document.getElementsByName('teste_estereopsia'),
+        obs: document.getElementById('teste_estereopsia_obs')
+      },
+      prisma: document.getElementsByName('prisma')
+    };
+
+    this.examinerForm = {
+      examinador: document.getElementById('examinador'),
+      dataExame: document.getElementById('data_exame')
+    };
 
     this.setupEventListeners();
   }
@@ -113,6 +155,33 @@ class FormDataCollector {
 
     Object.values(this.anamneseForm.informacoesAdicionais).forEach(input => {
       input?.addEventListener('input', () => this.collectAllData());
+    });
+
+    // Exames measurements event listeners
+    Object.values(this.examesForm).forEach(category => {
+      if (category.od) {  // If it has od/oe/binocular structure
+        Object.values(category).forEach(input => {
+          input?.addEventListener('input', () => this.collectAllData());
+        });
+      }
+    });
+
+    // Radio button groups with observations
+    ['testeIshihara', 'motilidadeOcular', 'testeEstereopsia'].forEach(test => {
+      this.examesForm[test].radios.forEach(radio => {
+        radio.addEventListener('change', () => this.collectAllData());
+      });
+      this.examesForm[test].obs?.addEventListener('input', () => this.collectAllData());
+    });
+
+    // Prisma radio buttons
+    this.examesForm.prisma.forEach(radio => {
+      radio.addEventListener('change', () => this.collectAllData());
+    });
+
+    // Examiner information event listeners
+    Object.values(this.examinerForm).forEach(input => {
+      input.addEventListener('input', () => this.collectAllData());
     });
   }
 
@@ -261,17 +330,87 @@ class FormDataCollector {
     };
   }
 
+  collectExamesData() {
+    const data = {
+      medidas: {
+        ar: {
+          od: this.examesForm.ar.od.value.trim(),
+          oe: this.examesForm.ar.oe.value.trim(),
+          binocular: this.examesForm.ar.binocular.value.trim()
+        },
+        tonometria: {
+          od: this.examesForm.tonometria.od.value.trim(),
+          oe: this.examesForm.tonometria.oe.value.trim(),
+          binocular: this.examesForm.tonometria.binocular.value.trim()
+        },
+        avLonge: {
+          od: this.examesForm.avLonge.od.value.trim(),
+          oe: this.examesForm.avLonge.oe.value.trim(),
+          binocular: this.examesForm.avLonge.binocular.value.trim()
+        },
+        avPerto: {
+          od: this.examesForm.avPerto.od.value.trim(),
+          oe: this.examesForm.avPerto.oe.value.trim(),
+          binocular: this.examesForm.avPerto.binocular.value.trim()
+        }
+      },
+      testes: {
+        ishihara: {
+          resultado: this.getSelectedRadioValue(this.examesForm.testeIshihara.radios),
+          observacoes: this.examesForm.testeIshihara.obs.value.trim()
+        },
+        motilidadeOcular: {
+          resultado: this.getSelectedRadioValue(this.examesForm.motilidadeOcular.radios),
+          observacoes: this.examesForm.motilidadeOcular.obs.value.trim()
+        },
+        estereopsia: {
+          resultado: this.getSelectedRadioValue(this.examesForm.testeEstereopsia.radios),
+          observacoes: this.examesForm.testeEstereopsia.obs.value.trim()
+        }
+      },
+      prisma: this.getSelectedRadioValue(this.examesForm.prisma)
+    };
+  
+    return {
+      data,
+      validation: { isValid: true, errors: [] } // Add validation rules if needed
+    };
+  }
+
+  collectExaminerData() {
+    const data = {
+      examinador: this.examinerForm.examinador.value.trim(),
+      dataExame: this.examinerForm.dataExame.value
+    };
+  
+    const errors = [];
+    if (!data.examinador) errors.push('Nome do examinador é obrigatório');
+    if (!data.dataExame) errors.push('Data do exame é obrigatória');
+  
+    return {
+      data,
+      validation: {
+        isValid: errors.length === 0,
+        errors
+      }
+    };
+  }
+
   collectAllData() {
     const personalData = this.collectPersonalData();
     const marketingData = this.collectMarketingData();
     const anamneseData = this.collectAnamneseData();
+    const examesData = this.collectExamesData();
+    const examinerData = this.collectExaminerData();
 
     console.log(anamneseData)
 
     const allData = {
       personal: personalData.data,
       marketing: marketingData.data,
-      anamnese: anamneseData.data
+      anamnese: anamneseData.data,
+      exames: examesData.data,
+      examiner: examinerData.data
     };
 
     const isValid = personalData.validation.isValid && marketingData.validation.isValid;
