@@ -403,8 +403,6 @@ class FormDataCollector {
     const examesData = this.collectExamesData();
     const examinerData = this.collectExaminerData();
 
-    console.log(anamneseData)
-
     const allData = {
       personal: personalData.data,
       marketing: marketingData.data,
@@ -519,13 +517,14 @@ class FormDataCollector {
 const formCollector = new FormDataCollector();
 
 // Example of form submission handling
-document.querySelector('form')?.addEventListener('submit', (e) => {
+document.querySelector('form')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const { data, validation } = formCollector.collectAllData();
 
   if (validation.isValid) {
     formCollector.storeData();
     console.log('Form submitted successfully', data);
+    await updateExcelFile(data);
   } else {
     formCollector.displayErrors(validation.errors);
   }
@@ -534,3 +533,40 @@ document.querySelector('form')?.addEventListener('submit', (e) => {
 // Example of retrieving and populating stored data
 // const storedData = formCollector.retrieveData();
 // formCollector.populateForm(storedData);
+
+async function updateExcelFile(data) {
+  // Read the existing Excel file
+  const response = await fetch('Updated_Rastreios_1737336645566.xlsx');
+  const arrayBuffer = await response.arrayBuffer();
+  const workbook = XLSX.read(arrayBuffer);
+  
+  // Get the first worksheet
+  const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+  
+  // Find first empty row starting from row 7
+  let rowNumber = 7;
+  while (worksheet[`B${rowNumber}`] != null) {
+      rowNumber++;
+  }
+  
+  // Update cells
+  worksheet[`B${rowNumber}`] = { v: data.personal.nome };
+  worksheet[`D${rowNumber}`] = { v: data.personal.idade };
+  worksheet[`E${rowNumber}`] = { v: data.exames.medidas.tonometria.od };
+  worksheet[`F${rowNumber}`] = { v: data.exames.medidas.tonometria.oe };
+  worksheet[`G${rowNumber}`] = { v: data.exames.medidas.avLonge.od };
+  worksheet[`H${rowNumber}`] = { v: data.exames.medidas.avLonge.oe };
+  worksheet[`I${rowNumber}`] = { v: data.exames.medidas.avLonge.binocular };
+  worksheet[`J${rowNumber}`] = { v: data.exames.medidas.avPerto.binocular };
+  
+  // Additional fields similar to Node.js version...
+  
+  // Generate new Excel file
+  const newWorkbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(newWorkbook, worksheet, "Sheet1");
+  
+  // Save file
+  XLSX.writeFile(newWorkbook, `Updated_Rastreios_${Date.now()}.xlsx`);
+  
+  return rowNumber;
+}

@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
   <title>Centro Óptico - Avaliação Visual</title>
-</head>
 
+  <!--Adding Meta Information-->
+  <meta charset="UTF-8">
+  <meta name="author" content="Wilson Garcia Simões Francisco">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000"/>
+  <!--Adding Styles-->
+  <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
+
+  <!--Adding Scripts-->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
 <body class="bg-gray-50 p-6">
   <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
     <!-- Header -->
@@ -19,7 +25,7 @@
       <h2 class="text-xl font-semibold mt-4">FICHA DE RASTREIO / AVALIAÇÃO VISUAL</h2>
     </header>
 
-    <form>
+    <form id="form">
       <!-- Personal Data Section -->
       <section class="mb-8">
         <h3 class="text-lg font-semibold mb-4 bg-gray-100 p-2">DADOS PESSOAIS (obrigatório)</h3>
@@ -342,7 +348,7 @@
                 <span>TESTE ESTEREOPSIA (MOSCA)</span>
                 <div class="space-x-4">
                   <label class="inline-flex items-center">
-                    <input type="radio" name="teste_estereopsia" value="alterado" class="mr -1">
+                    <input type="radio" name="teste_estereopsia" value="alterado" class="mr-1">
                     <span class="text-sm">ALTERADO</span>
                   </label>
                   <label class="inline-flex items-center">
@@ -401,8 +407,6 @@
       </div>
     </form>
   </div>
-
-  <script src="./main.js"></script>
+  <footer class="max-w-4xl mx-auto mt-4">&COPY; 2025 - Made with 💜 by <a href="https://www.linkedin.com/in/wilson-garcia-7737211b8">Wilson Francisco</a></footer>
 </body>
-
 </html>
