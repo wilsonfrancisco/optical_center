@@ -116,6 +116,54 @@ class FormDataCollector {
       dataExame: document.getElementById('data_exame')
     };
 
+    this.queixaAuditivaForm = {
+      dor: {
+        check: document.getElementById('check_dor'),
+        obs: null // Sem observações para este campo
+      },
+      zumbidos: {
+        check: document.getElementById('check_zumbidos'),
+        obs: null
+      },
+      otites: {
+        check: document.getElementById('check_otites'),
+        obs: null
+      },
+      coceira: {
+        check: document.getElementById('check_coceira'),
+        obs: null
+      },
+      plenitude: {
+        check: document.getElementById('check_plenitude'),
+        obs: null
+      },
+      outros: {
+        check: document.getElementById('check_outros'),
+        obs: document.getElementById('obs_check_outros')
+      }
+    };
+
+    this.achadosOtologicosForm = {
+      od_normal: document.getElementById('check_od_normal'),
+      oe_normal: document.getElementById('check_oe_normal'),
+      od_perfuracao: document.getElementById('check_od_perfuracao'),
+      oe_perfuracao: document.getElementById('check_oe_perfuracao'),
+      od_obstrucao: document.getElementById('check_od_obstrucao'),
+      oe_obstrucao: document.getElementById('check_oe_obstrucao'),
+      od_deteccao: document.getElementById('check_od_deteccao'),
+      oe_deteccao: document.getElementById('check_oe_deteccao'),
+      od_sinais_otite: document.getElementById('check_od_sinais_otite'),
+      oe_sinais_otite: document.getElementById('check_oe_sinais_otite'),
+      od_hiperema: document.getElementById('check_od_hiperema'),
+      oe_hiperema: document.getElementById('check_oe_hiperema')
+    };
+
+    this.encaminhamentosForm = {
+      consulta_audiologia: document.getElementById('check_consulta_audiologia'),
+      consulta_otorrino: document.getElementById('check_consulta_otorrino'),
+      orientacoes: document.getElementById('check_orientacoes')
+    };
+
     this.setupEventListeners();
   }
 
@@ -177,6 +225,26 @@ class FormDataCollector {
     // Prisma radio buttons
     this.examesForm.prisma.forEach(radio => {
       radio.addEventListener('change', () => this.collectAllData());
+    });
+
+    // Event listeners para QUEIXA AUDITIVA
+    Object.values(this.queixaAuditivaForm).forEach(field => {
+      if (field.check) {
+        field.check.addEventListener('change', () => this.collectAllData());
+      }
+      if (field.obs) {
+        field.obs.addEventListener('input', () => this.collectAllData());
+      }
+    });
+
+    // Event listeners para ACHADOS OTOLÓGICOS
+    Object.values(this.achadosOtologicosForm).forEach(checkbox => {
+      checkbox.addEventListener('change', () => this.collectAllData());
+    });
+
+    // Event listeners para ENCAMINHAMENTOS
+    Object.values(this.encaminhamentosForm).forEach(checkbox => {
+      checkbox.addEventListener('change', () => this.collectAllData());
     });
 
     // Examiner information event listeners
@@ -330,6 +398,33 @@ class FormDataCollector {
     };
   }
 
+  collectQueixaAuditivaData() {
+    const data = {};
+    Object.entries(this.queixaAuditivaForm).forEach(([key, field]) => {
+      data[key] = {
+        checked: field.check?.checked || false,
+        observacoes: field.obs?.value.trim() || ''
+      };
+    });
+    return data;
+  }
+
+  collectAchadosOtologicosData() {
+    const data = {};
+    Object.entries(this.achadosOtologicosForm).forEach(([key, checkbox]) => {
+      data[key] = checkbox.checked;
+    });
+    return data;
+  }
+
+  collectEncaminhamentosData() {
+    const data = {};
+    Object.entries(this.encaminhamentosForm).forEach(([key, checkbox]) => {
+      data[key] = checkbox.checked;
+    });
+    return data;
+  }
+
   collectExamesData() {
     const data = {
       medidas: {
@@ -401,6 +496,9 @@ class FormDataCollector {
     const marketingData = this.collectMarketingData();
     const anamneseData = this.collectAnamneseData();
     const examesData = this.collectExamesData();
+    const queixaAuditivaData = this.collectQueixaAuditivaData();
+    const achadosOtologicosData = this.collectAchadosOtologicosData();
+    const encaminhamentosData = this.collectEncaminhamentosData();
     const examinerData = this.collectExaminerData();
 
     console.log(anamneseData)
@@ -410,6 +508,9 @@ class FormDataCollector {
       marketing: marketingData.data,
       anamnese: anamneseData.data,
       exames: examesData.data,
+      queixaAuditiva: queixaAuditivaData,
+      achadosOtologicos: achadosOtologicosData,
+      encaminhamentos: encaminhamentosData,
       examiner: examinerData.data
     };
 
@@ -502,6 +603,32 @@ class FormDataCollector {
           this.anamnese.informacoesAdicionais[key].value = value || '';
         }
       });
+
+      // Preencher QUEIXA AUDITIVA
+      if (data.queixaAuditiva) {
+        Object.entries(this.queixaAuditivaForm).forEach(([key, field]) => {
+          if (field.check) {
+            field.check.checked = data.queixaAuditiva[key].checked;
+          }
+          if (field.obs) {
+            field.obs.value = data.queixaAuditiva[key].observacoes;
+          }
+        });
+      }
+
+      // Preencher ACHADOS OTOLÓGICOS
+      if (data.achadosOtologicos) {
+        Object.entries(this.achadosOtologicosForm).forEach(([key, checkbox]) => {
+          checkbox.checked = data.achadosOtologicos[key];
+        });
+      }
+
+      // Preencher ENCAMINHAMENTOS
+      if (data.encaminhamentos) {
+        Object.entries(this.encaminhamentosForm).forEach(([key, checkbox]) => {
+          checkbox.checked = data.encaminhamentos[key];
+        });
+      }
     }
   }
 
