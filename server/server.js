@@ -2,7 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
-import { appendDataToExcel } from './data-appender.js';
+import { appendDataToExcel } from './utils/data-appender.js';
+import { initializeDb } from './providers/db.js';
 
 const app = express();
 const port = 3000;
@@ -14,13 +15,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
+initializeDb().catch(console.error);
+
 app.post('/submit-form', (req, res) => {
   const formData = req.body;
   const data = JSON.parse(JSON.stringify(formData, null, 2))
-  console.log('Form Data Received:', JSON.stringify(formData, null, 2));
-
-  // Append form data to Excel file
-  // appendDataToExcel(); 
+  
+  appendDataToExcel(data).catch(console.error);
   res.json({ message: 'Form data received successfully!', data });
 });
 
