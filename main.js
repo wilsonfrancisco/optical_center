@@ -646,18 +646,31 @@ class FormDataCollector {
 const formCollector = new FormDataCollector();
 
 // Example of form submission handling
-document.querySelector('form')?.addEventListener('submit', (e) => {
+document.querySelector('form')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const { data, validation } = formCollector.collectAllData();
 
   if (validation.isValid) {
     formCollector.storeData();
+
+    try {
+      const response = await fetch('http://localhost:3000/submit-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+  
+      const result = await response.json();
+      console.log("Result", result);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
+
     console.log('Form submitted successfully', data);
   } else {
     formCollector.displayErrors(validation.errors);
   }
 });
-
 // Example of retrieving and populating stored data
 // const storedData = formCollector.retrieveData();
 // formCollector.populateForm(storedData);
