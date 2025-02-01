@@ -671,6 +671,3 @@ document.querySelector('form')?.addEventListener('submit', async (e) => {
     formCollector.displayErrors(validation.errors);
   }
 });
-// Example of retrieving and populating stored data
-// const storedData = formCollector.retrieveData();
-// formCollector.populateForm(storedData);

@@ -2,6 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
+import { appendDataToExcel } from './data-appender.js';
+
 const app = express();
 const port = 3000;
 
@@ -17,6 +19,8 @@ app.post('/submit-form', (req, res) => {
   const data = JSON.parse(JSON.stringify(formData, null, 2))
   console.log('Form Data Received:', JSON.stringify(formData, null, 2));
 
+  // Append form data to Excel file
+  // appendDataToExcel(); 
   res.json({ message: 'Form data received successfully!', data });
 });
 
