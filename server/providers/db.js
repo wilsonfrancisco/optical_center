@@ -1,16 +1,23 @@
 import path from 'path';
 import sqlite3 from 'sqlite3';
 
+import { logger } from '../logger.js';
+
 const dbFilePath = path.join(process.cwd(), 'tracking_information.db');
 
 function openDb() {
   return new Promise((resolve, reject) => {
     const db = new sqlite3.Database(dbFilePath, (err) => {
       if (err) {
-        console.error(err.message);
+        logger.error('Database connection failed', {
+          error: err.message,
+          path: dbFilePath
+        });
         reject(err);
       } else {
-        console.log('Conectado ao banco de dados SQLite.');
+        logger.info('Connecting to database', {
+          path: dbFilePath
+        });
         resolve(db);
       }
     });
@@ -53,7 +60,10 @@ async function initializeDb() {
 
     db.close();
   } catch (error) {
-    console.error('Error initializing database:', error);
+    logger.error('Error initializing database', {
+      error: error.message,
+      path: dbFilePath
+    });
   }
 }
 
@@ -69,7 +79,11 @@ async function getLastInsertedRow() {
     db.close();
     return result ? result.last_inserted_row : STARTING_POINT_ROW;
   } catch (error) {
-    console.error('Error getting last inserted row:', error);
+    logger.error('Error getting last inserted row', {
+      error: error.message,
+      path: dbFilePath
+    });
+
     return STARTING_POINT_ROW;
   }
 }
@@ -86,7 +100,10 @@ async function updateLastInsertedRow(row) {
     });
     db.close();
   } catch (error) {
-    console.error('Error updating last inserted row:', error);
+    logger.error('Error updating last inserted row', {
+      error: error.message,
+      path: dbFilePath
+    });
   }
 }
 
