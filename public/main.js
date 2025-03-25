@@ -119,7 +119,7 @@ class FormDataCollector {
     this.queixaAuditivaForm = {
       dor: {
         check: document.getElementById('check_dor'),
-        obs: null // Sem observações para este campo
+        obs: null
       },
       zumbidos: {
         check: document.getElementById('check_zumbidos'),
@@ -207,7 +207,7 @@ class FormDataCollector {
 
     // Exames measurements event listeners
     Object.values(this.examesForm).forEach(category => {
-      if (category.od) {  // If it has od/oe/binocular structure
+      if (category.od) {
         Object.values(category).forEach(input => {
           input?.addEventListener('input', () => this.collectAllData());
         });
@@ -227,7 +227,7 @@ class FormDataCollector {
       radio.addEventListener('change', () => this.collectAllData());
     });
 
-    // Event listeners para QUEIXA AUDITIVA
+    // QUEIXA AUDITIVA event listeners
     Object.values(this.queixaAuditivaForm).forEach(field => {
       if (field.check) {
         field.check.addEventListener('change', () => this.collectAllData());
@@ -237,12 +237,12 @@ class FormDataCollector {
       }
     });
 
-    // Event listeners para ACHADOS OTOLÓGICOS
+    // ACHADOS OTOLÓGICOS event listeners
     Object.values(this.achadosOtologicosForm).forEach(checkbox => {
       checkbox.addEventListener('change', () => this.collectAllData());
     });
 
-    // Event listeners para ENCAMINHAMENTOS
+    // ENCAMINHAMENTOS event listeners
     Object.values(this.encaminhamentosForm).forEach(checkbox => {
       checkbox.addEventListener('change', () => this.collectAllData());
     });
@@ -465,7 +465,7 @@ class FormDataCollector {
       },
       prisma: this.getSelectedRadioValue(this.examesForm.prisma)
     };
-  
+
     return {
       data,
       validation: { isValid: true, errors: [] } // Add validation rules if needed
@@ -477,11 +477,11 @@ class FormDataCollector {
       examinador: this.examinerForm.examinador.value.trim(),
       dataExame: this.examinerForm.dataExame.value
     };
-  
+
     const errors = [];
     if (!data.examinador) errors.push('Nome do examinador é obrigatório');
     if (!data.dataExame) errors.push('Data do exame é obrigatória');
-  
+
     return {
       data,
       validation: {
@@ -500,8 +500,6 @@ class FormDataCollector {
     const achadosOtologicosData = this.collectAchadosOtologicosData();
     const encaminhamentosData = this.collectEncaminhamentosData();
     const examinerData = this.collectExaminerData();
-
-    console.log(anamneseData)
 
     const allData = {
       personal: personalData.data,
@@ -531,12 +529,10 @@ class FormDataCollector {
 
     if (validation.isValid) {
       localStorage.setItem('formData', JSON.stringify(data));
-      console.log('All data stored successfully:', data);
       return true;
-    } else {
-      console.log('Cannot store invalid data:', validation.errors);
-      return false;
     }
+
+    return false;
   }
 
   retrieveData() {
@@ -604,7 +600,7 @@ class FormDataCollector {
         }
       });
 
-      // Preencher QUEIXA AUDITIVA
+      // Populate QUEIXA AUDITIVA
       if (data.queixaAuditiva) {
         Object.entries(this.queixaAuditivaForm).forEach(([key, field]) => {
           if (field.check) {
@@ -616,14 +612,14 @@ class FormDataCollector {
         });
       }
 
-      // Preencher ACHADOS OTOLÓGICOS
+      // Populate ACHADOS OTOLÓGICOS
       if (data.achadosOtologicos) {
         Object.entries(this.achadosOtologicosForm).forEach(([key, checkbox]) => {
           checkbox.checked = data.achadosOtologicos[key];
         });
       }
 
-      // Preencher ENCAMINHAMENTOS
+      // Populate ENCAMINHAMENTOS
       if (data.encaminhamentos) {
         Object.entries(this.encaminhamentosForm).forEach(([key, checkbox]) => {
           checkbox.checked = data.encaminhamentos[key];
@@ -635,9 +631,7 @@ class FormDataCollector {
   // Helper method to display validation errors (can be customized)
   displayErrors(errors) {
     if (errors.length > 0) {
-      console.log('Validation Errors:', errors);
-      // You can implement custom error display logic here
-      // For example, showing errors in specific elements or using a toast notification
+      Toast.show(`Ooops! Algo deu errado. ERRO: ${errors}`, 'error');
     }
   }
 }
@@ -654,19 +648,22 @@ document.querySelector('form')?.addEventListener('submit', async (e) => {
     formCollector.storeData();
 
     try {
-      const response = await fetch('http://localhost:3000/submit-form', {
+      await fetch('http://localhost:3000/submit-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-  
-      const result = await response.json();
-      console.log("Result", result);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    }
 
-    console.log('Form submitted successfully', data);
+      Toast.show('Avaliação realizada com sucesso!', 'success');
+
+      e.target.reset()
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    } catch (error) {
+      Toast.show(`Ooops! Algo deu errado. ERRO: ${error}`, 'error');
+    }
   } else {
     formCollector.displayErrors(validation.errors);
   }

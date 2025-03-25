@@ -17,10 +17,14 @@ app.use(express.static('public'));
 
 initializeDb().catch(console.error);
 
+app.get('/', (_, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.post('/submit-form', (req, res) => {
   const formData = req.body;
   const data = JSON.parse(JSON.stringify(formData, null, 2))
-  
+
   appendDataToExcel(data).catch(console.error);
   res.json({ message: 'Form data received successfully!', data });
 });

@@ -13,9 +13,10 @@
     <!-- Header -->
     <header class="border-b-2 pb-4 mb-6">
       <div class="flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-gray-800">Centro Óptico</h1>
+        <img
+          src="./logo.png"
+        />
       </div>
-      <p class="text-gray-600 italic">Você nunca viu nada assim</p>
       <h2 class="text-xl font-semibold mt-4">FICHA DE RASTREIO / AVALIAÇÃO VISUAL</h2>
     </header>
 
@@ -34,7 +35,7 @@
           </div>
           <div class="md:col-span-2">
             <label for="morada" class="block text-sm font-medium mb-1">Morada:</label>
-            <input id="morada" type="text" class="w-full border rounded p-2" required>
+            <input disabled id="morada" type="text" class="w-full border rounded p-2 disabled:bg-gray-100 disabled:cursor-not-allowed disabled:text-transparent" value="---">
           </div>
           <div>
             <label for="telefone" class="block text-sm font-medium mb-1">Telefone:</label>
@@ -44,11 +45,11 @@
             <label class="block text-sm font-medium mb-1">Gênero:</label>
             <div class="flex gap-4 mt-2">
               <label class="flex items-center">
-                <input type="radio" name="gender" value="M" class="mr-2">
+                <input disabled type="radio" name="gender" value="M" class="mr-2 disabled:disabled:bg-gray-100 disabled:cursor-not-allowed">
                 M
               </label>
               <label class="flex items-center">
-                <input type="radio" name="gender" value="F" class="mr-2">
+                <input disabled type="radio" name="gender" value="F" class="mr-2 disabled:disabled:bg-gray-100 disabled:cursor-not-allowed">
                 F
               </label>
             </div>
@@ -66,11 +67,11 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label for="sms" class="block text-sm font-medium mb-1">Via SMS:</label>
-            <input id="marketing_sms" type="tel" class="w-full border rounded p-2">
+            <input disabled id="marketing_sms" type="tel" class="w-full border rounded  disabled:disabled:bg-gray-100 disabled:cursor-not-allowed p-2">
           </div>
           <div>
             <label for="email" class="block text-sm font-medium mb-1">Via Email:</label>
-            <input id="marketing_email" type="email" class="w-full border rounded p-2">
+            <input disabled id="marketing_email" type="email" class="w-full disabled:disabled:bg-gray-100 disabled:cursor-not-allowed border rounded p-2">
           </div>
         </div>
       </section>
@@ -85,38 +86,38 @@
           <div class="space-y-2">
             <div class="flex justify-between items-center">
               <label class="flex items-center">
-                <input id="check_dor_cabeca" type="checkbox" class="mr-2">
+                <input disabled id="check_dor_cabeca" value="Dores de cabeça" type="checkbox" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-2">
                 Dores de cabeça
               </label>
-              <input id="obs_check_dor_cabeca" type="text" class="border rounded p-2" placeholder="Observações">
+              <input disabled id="obs_check_dor_cabeca" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed border rounded p-2" placeholder="Observações">
             </div>
             <div class="flex justify-between items-center">
               <label class="flex items-center">
                 <input id="check_ardor" type="checkbox" class="mr-2">
                 Ardor/Dor ocular
               </label>
-              <input id="obs_check_ardor" type="text" class="border rounded p-2" placeholder="Observações">
+              <input disabled id="obs_check_ardor" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed border rounded p-2" placeholder="Observações">
             </div>
             <div class="flex justify-between items-center">
               <label class="flex items-center">
-                <input id="check_lacrimejo" type="checkbox" class="mr-2">
+                <input disabled id="check_lacrimejo" type="checkbox" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-2">
                 Lacrimejo excessivo
               </label>
-              <input id="obs_check_lacrimejo" type="text" class="border rounded p-2" placeholder="Observações">
+              <input disabled id="obs_check_lacrimejo" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed border rounded p-2" placeholder="Observações">
             </div>
             <div class="flex justify-between items-center">
               <label class="flex items-center">
-                <input id="check_sensibilidade" type="checkbox" class="mr-2">
+                <input id="check_sensibilidade" value="Sensibilidade à luz" type="checkbox" class="mr-2">
                 Sensibilidade à luz
               </label>
-              <input id="obs_check_sensibilidade" type="text" class="border rounded p-2" placeholder="Observações">
+              <input disabled id="obs_check_sensibilidade" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed border rounded p-2" placeholder="Observações">
             </div>
             <div class="flex justify-between items-center">
               <label class="flex items-center">
-                <input id="check_comichao" type="checkbox" class="mr-2">
+                <input id="check_comichao" value="Comichão" type="checkbox" class="mr-2">
                 Comichão
               </label>
-              <input id="obs_check_comichao" type="text" class="border rounded p-2" placeholder="Observações">
+              <input disabled id="obs_check_comichao" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed border rounded p-2" placeholder="Observações">
             </div>
           </div>
 
@@ -124,38 +125,38 @@
           <div class="space-y-2">
             <div class="flex justify-between items-center">
               <label class="flex items-center">
-                <input id="check_olho_vermelho" type="checkbox" class="mr-2">
+                <input disabled id="check_olho_vermelho" type="checkbox" class="mr-2 disabled:bg-gray-100 disabled:cursor-not-allowed">
                 Olho vermelho
               </label>
-              <input id="obs_check_olho_vermelho" type="text" class="border rounded p-2" placeholder="Observações">
+              <input disabled id="obs_check_olho_vermelho" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed border rounded p-2" placeholder="Observações">
             </div>
             <div class="flex justify-between items-center">
               <label class="flex items-center">
-                <input id="check_pupila_branca" type="checkbox" class="mr-2">
+                <input disabled id="check_pupila_branca" type="checkbox" class="mr-2 disabled:bg-gray-100 disabled:cursor-not-allowed">
                 Pupila branca
               </label>
-              <input id="obs_check_pupila_branca" type="text" class="border rounded p-2" placeholder="Observações">
+              <input disabled id="obs_check_pupila_branca" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed border rounded p-2" placeholder="Observações">
             </div>
             <div class="flex justify-between items-center">
               <label class="flex items-center">
-                <input id="check_pestanas" type="checkbox" class="mr-2">
+                <input disabled id="check_pestanas" type="checkbox" class="mr-2 disabled:bg-gray-100 disabled:cursor-not-allowed">
                 Alterações pestanas
               </label>
-              <input id="obs_check_pestanas" type="text" class="border rounded p-2" placeholder="Observações">
+              <input disabled id="obs_check_pestanas" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed border rounded p-2" placeholder="Observações">
             </div>
             <div class="flex justify-between items-center">
               <label class="flex items-center">
-                <input id="check_palpebras" type="checkbox" class="mr-2">
+                <input disabled id="check_palpebras" type="checkbox" class="mr-2 disabled:bg-gray-100 disabled:cursor-not-allowed">
                 Alterações palpebras
               </label>
-              <input id="obs_check_palpebras" type="text" class="border rounded p-2" placeholder="Observações">
+              <input disabled id="obs_check_palpebras" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed border rounded p-2" placeholder="Observações">
             </div>
             <div class="flex justify-between items-center">
               <label class="flex items-center">
-                <input id="check_conjuntiva" type="checkbox" class="mr-2">
+                <input disabled id="check_conjuntiva" type="checkbox" class="mr-2 disabled:bg-gray-100 disabled:cursor-not-allowed">
                 Alterações conjuntiva
               </label>
-              <input id="obs_check_conjuntiva" type="text" class="border rounded p-2" placeholder="Observações">
+              <input disabled id="obs_check_conjuntiva" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed border rounded p-2" placeholder="Observações">
             </div>
           </div>
         </div>
@@ -166,20 +167,20 @@
           <div class="grid grid-cols-3 gap-4">
             <label class="flex items-center gap-3">
               <span class="block">Longe</span>
-              <input type="radio" name="dif_ver" value="longe" class="mr-1">
+              <input disabled type="radio" name="dif_ver" value="longe" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-1">
             </label>
             <label class="flex items-center gap-3">
               <span class="block ">Perto</span>
-              <input type="radio" name="dif_ver" value="perto" class="mr-1">
+              <input disabled type="radio" name="dif_ver" value="perto" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-1">
             </label>
             <label class="flex items-center gap-3">
               <span class="block">Longe e perto</span>
-              <input type="radio" name="dif_ver" value="ambos" class="mr-1">
+              <input disabled type="radio" name="dif_ver" value="ambos" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-1">
             </label>
           </div>
           <div class="mt-4">
             <label for="observacoes_dificuldade" class="block text-sm font-medium mb-1">Observações</label>
-            <input id="observacoes_dificuldade" type="text" class="w-full border rounded p-2">
+            <input id="observacoes_dificuldade" disabled type="text" class="w-full border rounded p-2 disabled:bg-gray-100 disabled:cursor-not-allowed">
           </div>
         </div>
 
@@ -193,7 +194,7 @@
                 <span>Usa óculos</span>
                 <div class="space-x-4">
                   <label class="inline-flex items-center">
-                    <input type="radio" name="usa_oculo" value="sim" class="mr-1">
+                    <input checked type="radio" name="usa_oculo" value="sim" class="mr-1">
                     <span class="text-sm">SIM</span>
                   </label>
                   <label class="inline-flex items-center">
@@ -207,11 +208,11 @@
                 <span>Cirurgia ocular</span>
                 <div class="space-x-4">
                   <label class="inline-flex items-center">
-                    <input type="radio" name="cirurgia_ocular" value="sim" class="mr-1">
+                    <input disabled type="radio" name="cirurgia_ocular" value="sim" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-1">
                     <span class="text-sm">SIM</span>
                   </label>
                   <label class="inline-flex items-center">
-                    <input type="radio" name="cirurgia_ocular" value="nao" class="mr-1">
+                    <input disabled type="radio" name="cirurgia_ocular" value="nao" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-1">
                     <span class="text-sm">NÃO</span>
                   </label>
                 </div>
@@ -221,11 +222,11 @@
                 <span>Doenças oculares</span>
                 <div class="space-x-4">
                   <label class="inline-flex items-center">
-                    <input type="radio" name="doencas_oculares" value="sim" class="mr-1">
+                    <input disabled type="radio" name="doencas_oculares" value="sim" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-1">
                     <span class="text-sm">SIM</span>
                   </label>
                   <label class="inline-flex items-center">
-                    <input type="radio" name="doencas_oculares" value="nao" class="mr-1">
+                    <input disabled type="radio" name="doencas_oculares" value="nao" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-1">
                     <span class="text-sm">NÃO</span>
                   </label>
                 </div>
@@ -235,11 +236,11 @@
                 <span>Medicação ocular</span>
                 <div class="space-x-4">
                   <label class="inline-flex items-center">
-                    <input type="radio" name="medicacao_ocular" value="sim" class="mr-1">
+                    <input disabled type="radio" name="medicacao_ocular" value="sim" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-1">
                     <span class="text-sm">SIM</span>
                   </label>
                   <label class="inline-flex items-center">
-                    <input type="radio" name="medicacao_ocular" value="nao" class="mr-1">
+                    <input disabled type="radio" name="medicacao_ocular" value="nao" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-1">
                     <span class="text-sm">NÃO</span>
                   </label>
                 </div>
@@ -253,19 +254,19 @@
             <div class="space-y-4">
               <div>
                 <label for="doencas_diagnosticadas" class="block text-sm mb-1">Doenças diagnosticadas:</label>
-                <input id="doencas_diagnosticadas" type="text" class="w-full border rounded p-2">
+                <input disabled id="doencas_diagnosticadas" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed w-full border rounded p-2">
               </div>
               <div>
                 <label for="medicacao_regular" class="block text-sm mb-1">Medicação regular:</label>
-                <input id="medicacao_regular" type="text" class="w-full border rounded p-2">
+                <input disabled id="medicacao_regular" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed w-full border rounded p-2">
               </div>
               <div>
                 <label for="qual_medicacao" class="block text-sm mb-1">Qual:</label>
-                <input id="qual_medicacao" type="text" class="w-full border rounded p-2">
+                <input disabled id="qual_medicacao" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed w-full border rounded p-2">
               </div>
               <div>
                 <label for="antecedentes_familiares" class="block text-sm mb-1">Antecedentes familiares:</label>
-                <input id="antecedentes_familiares" type="text" class="w-full border rounded p-2">
+                <input disabled id="antecedentes_familiares" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed w-full border rounded p-2">
               </div>
             </div>
           </div>
@@ -284,24 +285,24 @@
 
           <!-- OD column -->
           <div class="font-medium text-center col-start-2">OD</div>
-          <input id="ar_od" type="text" class="row-start-2 w-full border rounded p-1">
+          <input disabled id="ar_od" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed row-start-2 w-full border rounded p-1">
           <input id="tonometria_od" type="text" class="row-start-3 w-full border rounded p-1">
-          <input id="av_longe_od" type="text" class="row-start-4 w-full border rounded p-1">
-          <input id="av_perto_od" type="text" class="row-start-5 w-full border rounded p-1">
+          <input id="av_longe_od" type="number" min="1" max="9" class="row-start-4 w-full border rounded p-1">
+          <input id="av_perto_od" disabled class="disabled:bg-gray-100 disabled:cursor-not-allowed  row-start-5 w-full border rounded p-1">
 
           <!-- OE column -->
           <div class="font-medium text-center">OE</div>
-          <input id="ar_oe" type="text" class="row-start-2 w-full border rounded p-1">
+          <input disabled id="ar_oe" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed row-start-2 w-full border rounded p-1">
           <input id="tonometria_oe" type="text" class="row-start-3 w-full border rounded p-1">
-          <input id="av_longe_oe" type="text" class="row-start-4 w-full border rounded p-1">
-          <input id="av_perto_oe" type="text" class="row-start-5 w-full border rounded p-1">
+          <input id="av_longe_oe" type="number" min="1" max="9" class="row-start-4 w-full border rounded p-1">
+          <input id="av_perto_oe" type="text" disabled class="disabled:bg-gray-100 disabled:cursor-not-allowed  row-start-5 w-full border rounded p-1">
 
           <!-- BINOCULAR column -->
           <div class="font-medium text-center">BINOCULAR</div>
-          <input id="ar_binocular" type="text" class="row-start-2 w-full border rounded p-1">
-          <input id="tonometria_binocular" type="text" class="row-start-3 w-full border rounded p-1">
-          <input id="av_longe_binocular" type="text" class="row-start-4 w-full border rounded p-1">
-          <input id="av_perto_binocular" type="text" class="row-start-5 w-full border rounded p-1">
+          <input disabled id="ar_binocular" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed row-start-2 w-full border rounded p-1">
+          <input disabled id="tonometria_binocular" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed row-start-3 w-full border rounded p-1">
+          <input id="av_longe_binocular" type="number" min="1" max="9" class="row-start-4 w-full border rounded p-1">
+          <input id="av_perto_binocular" type="number" min="1" max="9" class="row-start-5 w-full border rounded p-1">
         </div>
 
         <!-- Status Section -->
@@ -312,14 +313,14 @@
                 <span>TESTE DE ISHIHARA</span>
                 <div class="space-x-4">
                   <label class="inline-flex items-center">
-                    <input type="radio" name="teste_ishihara" value="alterado" class="mr-1">
+                    <input type="radio" disabled name="teste_ishihara" value="alterado" class="disabled:bg-gray-100 disabled:cursor-not-allowed  mr-1">
                     <span class="text-sm">ALTERADO</span>
                   </label>
                   <label class="inline-flex items-center">
-                    <input type="radio" name="teste_ishihara" value="nao_alterado" class="mr-1">
+                    <input type="radio" disabled name="teste_ishihara" value="nao_alterado" class="disabled:bg-gray-100 disabled:cursor-not-allowed  mr-1">
                     <span class="text-sm">NÃO ALTERADO</span>
                   </label>
-                  <input id="teste_ishihara_obs" type="text" class="border rounded p-2" placeholder="Observações">
+                  <input id="teste_ishihara_obs" type="text" disabled class="disabled:bg-gray-100 disabled:cursor-not-allowed  border rounded p-2" placeholder="Observações">
                 </div>
               </div>
 
@@ -327,14 +328,14 @@
                 <span>MOTILIDADE OCULAR</span>
                 <div class="space-x-4">
                   <label class="inline-flex items-center">
-                    <input type="radio" name="motilidade_ocular" value="alterado" class="mr-1">
+                    <input type="radio" disabled name="motilidade_ocular" value="alterado" class="disabled:bg-gray-100 disabled:cursor-not-allowed  mr-1">
                     <span class="text-sm">ALTERADO</span>
                   </label>
                   <label class="inline-flex items-center">
-                    <input type="radio" name="motilidade_ocular" value="nao_alterado" class="mr-1">
+                    <input type="radio" disabled name="motilidade_ocular" value="nao_alterado" class="disabled:bg-gray-100 disabled:cursor-not-allowed  mr-1">
                     <span class="text-sm">NÃO ALTERADO</span>
                   </label>
-                  <input id="motilidade_ocular_obs" type="text" class="border rounded p-2" placeholder="Observações">
+                  <input id="motilidade_ocular_obs" type="text" disabled class="disabled:bg-gray-100 disabled:cursor-not-allowed  border rounded p-2" placeholder="Observações">
                 </div>
               </div>
 
@@ -342,14 +343,14 @@
                 <span>TESTE ESTEREOPSIA (MOSCA)</span>
                 <div class="space-x-4">
                   <label class="inline-flex items-center">
-                    <input type="radio" name="teste_estereopsia" value="alterado" class="mr -1">
+                    <input type="radio" disabled name="teste_estereopsia" value="alterado" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-1">
                     <span class="text-sm">ALTERADO</span>
                   </label>
                   <label class="inline-flex items-center">
-                    <input type="radio" name="teste_estereopsia" value="nao_alterado" class="mr-1">
+                    <input type="radio" disabled name="teste_estereopsia" value="nao_alterado" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-1">
                     <span class="text-sm">NÃO ALTERADO</span>
                   </label>
-                  <input id="teste_estereopsia_obs" type="text" class="border rounded p-2" placeholder="Observações">
+                  <input id="teste_estereopsia_obs" type="text" disabled class="disabled:bg-gray-100 disabled:cursor-not-allowed  border rounded p-2" placeholder="Observações">
                 </div>
               </div>
             </div>
@@ -361,19 +362,19 @@
           <div class="grid grid-cols-4 gap-4">
             <label class="flex items-center gap-3">
               <span class="block">Exoforia</span>
-              <input type="radio" name="prisma" value="exoforia" class="mr-1">
+              <input type="radio" disabled name="prisma" value="exoforia" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-1">
             </label>
             <label class="flex items-center gap-3">
               <span class="block">Endoforia</span>
-              <input type="radio" name="prisma" value="endoforia" class="mr-1">
+              <input type="radio" disabled name="prisma" value="endoforia" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-1">
             </label>
             <label class="flex items-center gap-3">
               <span class="block">ORTO</span>
-              <input type="radio" name="prisma" value="orto" class="mr-1">
+              <input type="radio" disabled name="prisma" value="orto" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-1">
             </label>
             <label class="flex items-center gap-3">
               <span class="block">Supressão</span>
-              <input type="radio" name="prisma" value="supressao" class="mr-1">
+              <input type="radio" disabled name="prisma" value="supressao" class="disabled:bg-gray-100 disabled:cursor-not-allowed mr-1">
             </label>
           </div>
         </div>
@@ -414,7 +415,7 @@
                   <input id="check_outros" type="checkbox" class="mr-2">
                   Outros
                 </label>
-                <input id="obs_check_outros" type="text" class="border rounded p-2" placeholder="Observações">
+                <input disabled id="obs_check_outros" type="text" class="disabled:bg-gray-100 disabled:cursor-not-allowed border rounded p-2" placeholder="Observações">
               </div>
             </div>
           </div>
@@ -546,8 +547,11 @@
         </button>
       </div>
     </form>
+
+    <div id="toastContainer" class="fixed top-4 right-4 z-50 max-w-max space-y-2"></div>
   </div>
 
+  <script src="./toast.js"></script>
   <script src="./main.js"></script>
 </body>
 
